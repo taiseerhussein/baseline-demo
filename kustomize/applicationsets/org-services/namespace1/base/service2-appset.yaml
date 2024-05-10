@@ -18,7 +18,7 @@ spec:
       name: '{{cluster}}-{{namespace}}-service2'
     spec:
       source:
-        repoURL: https://github.com/taiseerhussein/deploy-app-with-gitops.git
+        repoURL: https://github.com/taiseerhussein/baseline-demo
         targetRevision: main
         path: kustomize/org-services/services/service2/overlays/{{cluster}}
       project: default

@@ -88,7 +88,7 @@ spec:
     - name: update-kustomize-repo
       params:
         - name: gitRepositoryUrl
-          value: 'https://github.com/taiseerhussein/deploy-app-with-gitops.git'
+          value: 'https://github.com/taiseerhussein/baseline-demo'
         - name: gitRepositoryRevision
           value: main
         - name: gitPath
