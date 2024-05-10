@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - configmap.yaml
-- ../../../../common/manifest-base/
+# - ../../../../common/manifest-base/
 
 patches:
 - patch: |- 
