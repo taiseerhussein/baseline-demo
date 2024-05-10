@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/taiseerhussein/baseline-demo
         targetRevision: main
-        path: kustomize/org-services/common/namespaces
+        path: kustomize/org-services/namespaces
       project: default
       destination:
         server: '{{url}}'
