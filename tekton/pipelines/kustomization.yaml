@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - pipeline.yaml
-- trigger.yaml
+# - trigger.yaml
