@@ -8,5 +8,5 @@ spec:
   resources:
     requests:
       storage: 3Gi
-  storageClassName: gp3
+  storageClassName: gp2
   volumeMode: Filesystem
