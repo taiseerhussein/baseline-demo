@@ -8,6 +8,4 @@ resources:
 
 # create namespaces appset. 
 - ../../namespaces
-# Create sealed secret appsets
-# - ../../sealed-secrets/dev
 
