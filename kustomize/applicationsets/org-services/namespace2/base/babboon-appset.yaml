@@ -6,6 +6,7 @@ metadata:
 spec:
   generators:
   - list:
+      elements:
       # Patch the generators
   template:
     metadata:
