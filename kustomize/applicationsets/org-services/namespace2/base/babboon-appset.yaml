@@ -6,10 +6,7 @@ metadata:
 spec:
   generators:
   - list:
-      elements:
-      - cluster: dev-stable
-        url: https://kubernetes.default.svc
-        namespace: namespace2
+      # Patch the generators
   template:
     metadata:
       name: '{{cluster}}-{{namespace}}-babboon'
@@ -17,7 +14,7 @@ spec:
       source:
         repoURL: https://github.com/taiseerhussein/baseline-demo
         targetRevision: main
-        path: kustomize/org-services/services/namespace2/babboon/overlays/{{cluster}}
+        path: kustomize/org-services/services/babboon/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'
