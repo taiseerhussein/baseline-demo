@@ -11,9 +11,9 @@ patches:
       path: /spec/generators/0/list
       value:
         elements: 
-        - cluster: dev-stable
+        - cluster: dev
           url: https://kubernetes.default.svc
-          namespace: namespace3
+          namespace: dev-namespace3
   target:
     kind: ApplicationSet
 - patch: |- 

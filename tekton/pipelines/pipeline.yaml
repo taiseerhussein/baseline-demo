@@ -23,7 +23,7 @@ spec:
       description: The kustomize git repository url
       name: KUSTOMIZE_GIT_URL
       type: string
-    - default: dev-stable
+    - default: dev
       description: The target env
       name: KUSTOMIZE_ENV
       type: string
@@ -94,7 +94,7 @@ spec:
         - name: gitPath
           value: kustomize/org-services/services
         - name: fileName
-          value: namespace1/php-hello/overlays/dev-stable/version.yaml
+          value: namespace1/php-hello/overlays/dev/version.yaml
         - name: image
           value: quay.io/tkhussein/php-hello
         - name: imageTag
