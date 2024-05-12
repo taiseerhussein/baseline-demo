@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - pipeline.yaml
-- dotnet-pipeline
+- dotnet-pipeline.yaml
