@@ -1,6 +1,8 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: update-kustomize-repo
   namespace: tekton-tutorial
 spec:

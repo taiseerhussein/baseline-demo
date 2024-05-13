@@ -1,6 +1,8 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
   name: php-hello-event-listener
   namespace: tekton-tutorial
 spec:
