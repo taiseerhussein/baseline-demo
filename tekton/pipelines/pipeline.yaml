@@ -39,7 +39,7 @@ spec:
       description: The subdirectory in the kustomize git repository
       name: KUSTOMIZE_GIT_CONTEXT_DIR
       type: string
-    - default: namespace1/php-hello/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
+    - default: php-hello/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
       description: The YAML file in which to patch the image
       name: KUSTOMIZE_GIT_FILE_NAME
       type: string
