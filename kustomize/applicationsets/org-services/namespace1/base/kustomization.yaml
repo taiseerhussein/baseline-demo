@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
 - php-hello-appset.yaml
+- dotnettest.yaml
 # - service2-appset.yaml
 
