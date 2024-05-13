@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-annotations:
+  annotations:
     argocd.argoproj.io/sync-wave: "3"
   name: trigger-template-tag-php-hello
   namespace: tekton-tutorial
