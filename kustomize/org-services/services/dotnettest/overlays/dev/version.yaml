@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnettest
+spec:
+  template:
+    spec:
+      containers:
+      - image: quay.io/tkhussein/dotnettest:4e8cc340ba986fcd7d306fc3ed03cdf76abf9ef5
+        name: dotnettest
