@@ -92,9 +92,9 @@ spec:
         - name: gitRepositoryRevision
           value: main
         - name: gitPath
-          value: kustomize/org-services/services
+          value: $(params.KUSTOMIZE_GIT_CONTEXT_DIR)
         - name: fileName
-          value: namespace1/php-hello/overlays/dev/version.yaml
+          value: $(params.KUSTOMIZE_GIT_FILE_NAME)
         - name: image
           value: quay.io/tkhussein/php-hello
         - name: imageTag
