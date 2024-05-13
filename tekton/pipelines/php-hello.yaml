@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: tag-build-and-deploy
+  name: php-hello
   namespace: tekton-tutorial
   labels:
     app.kubernetes.io/instance: pipeline

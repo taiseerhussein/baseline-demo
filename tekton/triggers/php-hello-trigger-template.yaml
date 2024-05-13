@@ -1,0 +1,61 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  creationTimestamp: '2024-05-13T16:14:09Z'
+  generation: 1
+  managedFields:
+  name: trigger-template-tag-php-hello
+  namespace: tekton-tutorial
+spec:
+  params:
+    - name: git-revision
+    - name: git-commit-message
+    - name: git-repo-url
+    - name: git-repo-name
+    - name: content-type
+    - name: pusher-name
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1
+      kind: PipelineRun
+      metadata:
+        annotations:
+          pipeline.openshift.io/started-by: cluster-admin
+        generateName: tag-build-and-deploy-
+        labels:
+          app.kubernetes.io/instance: pipelines
+          tekton.dev/pipeline: tag-build-and-deploy
+        namespace: tekton-tutorial
+      spec:
+        params:
+          - name: git-url
+            value: 'https://github.com/taiseerhussein/php-hello-dockerfile.git'
+          - name: git-revision
+            value: main
+          - name: IMAGEREPO
+            value: quay.io/tkhussein/php-hello
+          - name: KUSTOMIZE_GIT_URL
+            value: 'https://github.com/taiseerhussein/baseline-demo.git'
+          - name: KUSTOMIZE_ENV
+            value: dev
+          - name: IMAGETAG
+            value: v3.0.4
+          - name: KUSTOMIZE_GIT_REVISION
+            value: main
+          - name: KUSTOMIZE_GIT_CONTEXT_DIR
+            value: kustomize/org-services/services
+          - name: KUSTOMIZE_GIT_FILE_NAME
+            value: php-hello/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
+        pipelineRef:
+          name: tag-build-and-deploy
+        status: null
+        workspaces:
+          - name: shared-workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+                storageClassName: gp3
+                volumeMode: Filesystem
