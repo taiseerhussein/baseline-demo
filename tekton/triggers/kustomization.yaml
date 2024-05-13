@@ -6,3 +6,5 @@ resources:
 - dotnettest-trigger.yaml
 - php-hello-trigger-template.yaml
 - php-hello-trigger.yaml
+- el-dotnettest-route.yaml
+- el-php-hello-route.yaml
