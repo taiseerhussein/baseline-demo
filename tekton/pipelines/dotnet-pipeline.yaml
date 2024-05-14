@@ -98,7 +98,7 @@ spec:
         - name: fileName
           value: $(params.KUSTOMIZE_GIT_FILE_NAME)
         - name: image
-          value: quay.io/tkhussein/php-hello
+          value: quay.io/tkhussein/dotnettest
         - name: imageTag
           value: $(tasks.git-clone.results.commit)
         - name: verbose
