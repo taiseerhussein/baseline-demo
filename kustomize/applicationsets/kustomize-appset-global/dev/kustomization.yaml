@@ -8,4 +8,5 @@ resources:
 
 # create namespaces appset. 
 - ../../namespaces
+- ../../../../tekton
 
