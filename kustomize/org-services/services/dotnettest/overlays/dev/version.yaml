@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-      - image: quay.io/tkhussein/dotnettest:8328ddacc4150c2ec7eea06a2ebff60b5184848d
+      - image: quay.io/tkhussein/dotnettest:080434d98459f8140eef8bd373f679ff32f88790
         name: dotnettest
