@@ -7,12 +7,7 @@ spec:
   generators:
   - list:
       elements:
-      # - cluster: dev-unstable
-      #   url: https://kubernetes.default.svc
-      #   namespace: php-hello-unstable
-      # - cluster: dev
-      #   url: https://kubernetes.default.svc
-      #   namespace: php-hello
+      
   template:
     metadata:
       name: '{{cluster}}-{{namespace}}-php-hello'
