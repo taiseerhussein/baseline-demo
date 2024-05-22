@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - php-hello.yaml
-- dotnet-pipeline.yaml
+# - dotnet-pipeline.yaml
