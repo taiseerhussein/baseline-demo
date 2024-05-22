@@ -5,5 +5,5 @@ resources:
 - base-deployment.yaml
 - base-route.yaml
 - base-service.yaml
-# - namespace1.yaml
+# - baseline-demo.yaml
 # - namespace2.yaml
