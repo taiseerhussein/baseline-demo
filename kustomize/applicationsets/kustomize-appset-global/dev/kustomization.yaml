@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../org-services/baseline-demo/overlays/dev
-- ../../org-services/namespace2/overlays/dev
+# - ../../org-services/namespace2/overlays/dev
 # - ../../org-services/namespace3/overlays/dev
 
 # create namespaces appset. 
