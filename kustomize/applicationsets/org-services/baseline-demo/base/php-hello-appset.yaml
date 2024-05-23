@@ -7,7 +7,7 @@ spec:
   generators:
   - list:
       elements:
-      
+      # The proper generator will be patched from the proper overlay directory
   template:
     metadata:
       name: '{{cluster}}-{{namespace}}-php-hello'

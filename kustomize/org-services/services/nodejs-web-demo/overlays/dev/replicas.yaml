@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dotnettest
+  name: nodejs-web-demo
 spec:
   replicas: 1

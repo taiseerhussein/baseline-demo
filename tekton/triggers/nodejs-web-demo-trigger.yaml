@@ -3,7 +3,7 @@ kind: EventListener
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"
-  name: dotnettest-event-listener
+  name: nodejs-web-demo-event-listener
   namespace: tekton-tutorial
 spec:
   namespaceSelector: {}

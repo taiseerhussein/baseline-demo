@@ -31,7 +31,7 @@ spec:
           - name: git-revision
             value: main
           - name: IMAGEREPO
-            value: quay.io/tkhussein/dotnettest
+            value: quay.io/tkhussein/nodejs-web-demo
           - name: KUSTOMIZE_GIT_URL
             value: 'https://github.com/taiseerhussein/baseline-demo.git'
           - name: KUSTOMIZE_ENV
@@ -43,7 +43,7 @@ spec:
           - name: KUSTOMIZE_GIT_CONTEXT_DIR
             value: kustomize/org-services/services
           - name: KUSTOMIZE_GIT_FILE_NAME
-            value: dotnettest/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
+            value: nodejs-web-demo/overlays/$(params.KUSTOMIZE_ENV)/version.yaml
         pipelineRef:
           name: dotnet-pipeline
         status: null

@@ -10,42 +10,42 @@ patches:
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /metadata/name
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /spec/selector/matchLabels/app
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /spec/template/metadata/labels/app
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /spec/template/spec/containers/0/name
-      value: dotnettest
+      value: nodejs-web-demo
   target:
     kind: Deployment
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /metadata/name
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /spec/to/name
-      value: dotnettest
+      value: nodejs-web-demo
   target:
     kind: Route
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /metadata/name
-      value: dotnettest
+      value: nodejs-web-demo
     - op: replace
       path: /spec/selector/app
-      value: dotnettest
+      value: nodejs-web-demo
   target:
     kind: Service

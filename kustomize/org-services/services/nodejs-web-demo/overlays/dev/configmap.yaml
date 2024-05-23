@@ -3,4 +3,4 @@ data:
   ENVIRONMENT: 'Development'
 kind: ConfigMap
 metadata:
-  name: dotnettest
+  name: nodejs-web-demo

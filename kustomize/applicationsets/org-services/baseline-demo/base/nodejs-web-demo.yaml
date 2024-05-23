@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: service2
+  name: nodejs-web-demo
   namespace: openshift-gitops
 spec:
   generators:
@@ -10,12 +10,12 @@ spec:
       # The proper generator will be patched from the proper overlay directory
   template:
     metadata:
-      name: '{{cluster}}-{{namespace}}-service2'
+      name: '{{cluster}}-{{namespace}}-nodejs-web-demo'
     spec:
       source:
         repoURL: https://github.com/taiseerhussein/baseline-demo
         targetRevision: main
-        path: kustomize/org-services/services/service2/overlays/{{cluster}}
+        path: kustomize/org-services/services/nodejs-web-demo/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'

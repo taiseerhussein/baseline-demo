@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-web-demo
+spec:
+  template:
+    spec:
+      containers:
+      - image: quay.io/tkhussein/nodejs-web-demo:080434d98459f8140eef8bd373f679ff32f88790
+        name: nodejs-web-demo

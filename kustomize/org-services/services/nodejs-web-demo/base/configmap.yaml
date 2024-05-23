@@ -4,4 +4,4 @@ data:
   key2: value2
 kind: ConfigMap
 metadata:
-  name: dotnettest
+  name: nodejs-web-demo
