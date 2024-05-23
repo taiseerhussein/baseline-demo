@@ -50,7 +50,7 @@ spec:
     - name: rox_api_token
       value: roxsecrets
     - name: output_format
-      value: json
+      value: 'json'
     - name: insecure-skip-tls-verify
       value: 'true'
   tasks:
