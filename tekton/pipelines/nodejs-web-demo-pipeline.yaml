@@ -49,8 +49,6 @@ spec:
       value: roxsecrets
     - name: rox_api_token
       value: roxsecrets
-    - name: output_format
-      value: 'csv'
     - name: insecure-skip-tls-verify
       value: 'true'
   tasks:
@@ -125,7 +123,7 @@ spec:
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: output_format
-          value: 'csv'
+          value: csv
         - name: insecure-skip-tls-verify
           value: 'true'
       runAfter:
