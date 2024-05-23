@@ -1,12 +1,12 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
-  name: dotnet-pipeline
-  namespace: tekton-tutorial
+    argocd.argoproj.io/sync-wave: '2'
   labels:
     app.kubernetes.io/instance: pipeline
+  name: nodejs-web-pipeline
+  namespace: tekton-tutorial
 spec:
   params:
     - default: 'https://github.com/taiseerhussein/web-nodejs-sample.git'
@@ -45,12 +45,6 @@ spec:
       description: The YAML file in which to patch the image
       name: KUSTOMIZE_GIT_FILE_NAME
       type: string
-    - name: rox_central_endpoint
-      value: roxsecrets
-    - name: rox_api_token
-      value: roxsecrets
-    - name: insecure-skip-tls-verify
-      value: 'true'
   tasks:
     - name: build-image
       params:
@@ -83,8 +77,7 @@ spec:
         - name: verbose
           value: 'true'
         - name: gitInitImage
-          value: >-
-            gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0
+          value: 'gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0'
         - name: userHome
           value: /tekton/home
       taskRef:
@@ -117,13 +110,13 @@ spec:
     - name: acs-image-scan
       params:
         - name: rox_central_endpoint
-          value: $(params.roxsecrets)
+          value: roxsecrets
         - name: rox_api_token
-          value: $(params.roxsecrets)
+          value: roxsecrets
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: output_format
-          value: csv
+          value: json
         - name: insecure-skip-tls-verify
           value: 'true'
       runAfter:
@@ -134,9 +127,9 @@ spec:
     - name: acs-image-check
       params:
         - name: rox_central_endpoint
-          value: $(params.roxsecrets)
+          value: roxsecrets
         - name: rox_api_token
-          value: $(params.roxsecrets)
+          value: roxsecrets
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: insecure-skip-tls-verify
