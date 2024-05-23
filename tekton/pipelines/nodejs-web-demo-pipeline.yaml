@@ -141,8 +141,6 @@ spec:
           value: '$(params.roxsecrets)'
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
-        - name: output_format
-          value: 'json'
         - name: insecure-skip-tls-verify
           value: 'true'
       runAfter:
