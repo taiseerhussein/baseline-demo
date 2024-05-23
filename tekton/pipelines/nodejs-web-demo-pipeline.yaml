@@ -117,9 +117,9 @@ spec:
     - name: acs-image-scan
       params:
         - name: rox_central_endpoint
-          value: '$(params.roxsecrets)'
+          value: $(params.roxsecrets)
         - name: rox_api_token
-          value: '$(params.roxsecrets)'
+          value: $(params.roxsecrets)
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: output_format
@@ -134,9 +134,9 @@ spec:
     - name: acs-image-check
       params:
         - name: rox_central_endpoint
-          value: '$(params.roxsecrets)'
+          value: $(params.roxsecrets)
         - name: rox_api_token
-          value: '$(params.roxsecrets)'
+          value: $(params.roxsecrets)
         - name: image
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: insecure-skip-tls-verify
