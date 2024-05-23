@@ -3,7 +3,7 @@ kind: TriggerTemplate
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
-  name: trigger-template-dotnet-pipeline
+  name: trigger-template-nodejs-web-demo-pipeline
   namespace: tekton-tutorial
 spec:
   params:
