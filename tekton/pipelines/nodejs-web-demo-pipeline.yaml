@@ -17,11 +17,11 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: quay.io/tkhussein/nodejs-web-demo
+    - default: image-registry.openshift-image-registry.svc:5000/dev-baseline-demo/web-nodejs-sample
       description: image to be build from the code
       name: IMAGEREPO
       type: string
-    - default: 'image-registry.openshift-image-registry.svc:5000/dev-baseline-demo/web-nodejs-sample'
+    - default: 'https://github.com/taiseerhussein/web-nodejs-sample.git'
       description: The kustomize git repository url
       name: KUSTOMIZE_GIT_URL
       type: string
@@ -46,20 +46,6 @@ spec:
       name: KUSTOMIZE_GIT_FILE_NAME
       type: string
   tasks:
-    - name: build-image
-      params:
-        - name: IMAGE
-          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
-        - name: FORMAT
-          value: docker
-      runAfter:
-        - git-clone
-      taskRef:
-        kind: ClusterTask
-        name: buildah
-      workspaces:
-        - name: source
-          workspace: shared-workspace
     - name: git-clone
       params:
         - name: url
@@ -86,27 +72,20 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
-    - name: update-kustomize-repo
+    - name: build-image
       params:
-        - name: gitRepositoryUrl
-          value: 'https://github.com/taiseerhussein/baseline-demo'
-        - name: gitRepositoryRevision
-          value: main
-        - name: gitPath
-          value: $(params.KUSTOMIZE_GIT_CONTEXT_DIR)
-        - name: fileName
-          value: $(params.KUSTOMIZE_GIT_FILE_NAME)
-        - name: image
-          value: quay.io/tkhussein/nodejs-web-demo
-        - name: imageTag
-          value: $(tasks.git-clone.results.commit)
-        - name: verbose
-          value: 'true'
+        - name: IMAGE
+          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+        - name: FORMAT
+          value: docker
       runAfter:
-        - acs-image-check
+        - git-clone
       taskRef:
-        kind: Task
-        name: update-kustomize-repo
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: shared-workspace
     - name: acs-image-scan
       params:
         - name: rox_central_endpoint
@@ -139,5 +118,42 @@ spec:
       taskRef:
         kind: Task
         name: acs-image-check
+    - name: push-image
+      params:
+        - name: srcImageURL
+          value: >-
+            docker://'$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+        - name: destImageURL
+          value: 'docker://quay.io/tkhussein/nodejs-web-demo:$(asks.git-clone.results.commit)'
+        - name: srcTLSverify
+          value: 'false'
+        - name: destTLSverify
+          value: 'false'
+      runAfter:
+        - acs-image-check
+      taskRef:
+        kind: ClusterTask
+        name: skopeo-copy
+    - name: update-kustomize-repo
+      params:
+        - name: gitRepositoryUrl
+          value: 'https://github.com/taiseerhussein/baseline-demo'
+        - name: gitRepositoryRevision
+          value: main
+        - name: gitPath
+          value: $(params.KUSTOMIZE_GIT_CONTEXT_DIR)
+        - name: fileName
+          value: $(params.KUSTOMIZE_GIT_FILE_NAME)
+        - name: image
+          value: quay.io/tkhussein/nodejs-web-demo
+        - name: imageTag
+          value: $(tasks.git-clone.results.commit)
+        - name: verbose
+          value: 'true'
+      runAfter:
+        - push-image
+      taskRef:
+        kind: Task
+        name: update-kustomize-repo
   workspaces:
     - name: shared-workspace
