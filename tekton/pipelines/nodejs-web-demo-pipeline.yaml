@@ -17,7 +17,7 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/dev-baseline-demo/web-nodejs-sample
+    - default: image-registry.openshift-image-registry.svc:5000/dev-baseline-demo/web-nodejs-sample
       description: image to be build from the code
       name: IMAGEREPO
       type: string
@@ -76,12 +76,18 @@ spec:
       params:
         - name: IMAGE
           value: '$(params.IMAGEREPO):demo'
+        - name: BUILDER_IMAGE
+          value: 'registry.redhat.io/rhel8/buildah@sha256:55f5c7d88c77e1ab5a2ab8e877172b2b66cb196e21f10dc45148470d0ee8bbae'
         - name: FORMAT
           value: docker
         - name: SKIP_PUSH
           value: 'false'
         - name: TLSVERIFY
           value: 'false'
+        - name: BUILD_EXTRA_ARGS
+          value: ''
+        - name: PUSH_EXTRA_ARGS
+          value: ''
       runAfter:
         - git-clone
       taskRef:
