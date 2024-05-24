@@ -126,14 +126,12 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            docker://'$(params.IMAGEREPO):demo'
+            docker://$(params.IMAGEREPO):demo
         - name: destImageURL
-          value: 'docker://quay.io/tkhussein/nodejs-web-demo:$(asks.git-clone.results.commit)'
+          value: 'docker://quay.io/tkhussein/nodejs-web-demo:demo'
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
-          value: 'false'
-        - name: SKIP_PUSH
           value: 'false'
       runAfter:
         - acs-image-check
