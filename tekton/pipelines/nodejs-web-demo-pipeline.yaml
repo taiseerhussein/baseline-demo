@@ -17,7 +17,7 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com
+    - default: default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/dev-baseline-demo/web-nodejs-sample
       description: image to be build from the code
       name: IMAGEREPO
       type: string
