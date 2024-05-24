@@ -14,5 +14,5 @@ spec:
         - kind: ClusterTriggerBinding
           ref: github-push
       template:
-        ref: trigger-template-dotnet-pipeline
+        ref: trigger-template-nodejs-web-demo-pipeline
 
