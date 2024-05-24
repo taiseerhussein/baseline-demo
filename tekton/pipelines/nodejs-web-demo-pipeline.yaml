@@ -79,7 +79,7 @@ spec:
         - name: FORMAT
           value: docker
         - name: SKIP_PUSH
-          value: 'true'
+          value: 'false'
       runAfter:
         - git-clone
       taskRef:
