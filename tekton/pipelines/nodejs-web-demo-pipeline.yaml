@@ -78,6 +78,8 @@ spec:
           value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: FORMAT
           value: docker
+        - name: SKIP_PUSH
+          value: 'true'
       runAfter:
         - git-clone
       taskRef:
@@ -130,7 +132,7 @@ spec:
         - name: destTLSverify
           value: 'false'
         - name: SKIP_PUSH
-          value: 'true'
+          value: 'false'
       runAfter:
         - acs-image-check
       taskRef:
