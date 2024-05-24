@@ -160,7 +160,7 @@ spec:
         - name: image
           value: quay.io/tkhussein/nodejs-web-demo
         - name: imageTag
-          value: demo
+          value: $(tasks.git-clone.results.commit)
         - name: verbose
           value: 'true'
       runAfter:
