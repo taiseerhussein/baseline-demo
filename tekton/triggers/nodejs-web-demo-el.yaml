@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"
   name: nodejs-web-demo-event-listener
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
 spec:
   namespaceSelector: {}
   resources: {}

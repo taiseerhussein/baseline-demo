@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   name: trigger-template-nodejs-web-demo-pipeline
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
 spec:
   params:
     - name: git-revision
@@ -24,7 +24,7 @@ spec:
         labels:
           app.kubernetes.io/instance: dev-pipeline-creation
           tekton.dev/pipeline: nodejs-web-pipeline
-        namespace: tekton-tutorial
+        namespace: nodejs-web-app-pipelines
       spec:
         params:
           - name: git-url

@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: pipeline
   name: nodejs-web-pipeline
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
 spec:
   params:
     - default: 'https://github.com/taiseerhussein/web-nodejs-sample.git'
@@ -17,7 +17,7 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: image-registry.openshift-image-registry.svc:5000/dev-baseline-demo/web-nodejs-sample
+    - default: image-registry.openshift-image-registry.svc:5000/nodejs-web-app-pipelines/web-nodejs-sample
       description: image to be build from the code
       name: IMAGEREPO
       type: string

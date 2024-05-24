@@ -15,7 +15,7 @@ metadata:
       operation: Update
       time: '2024-05-13T18:30:40Z'
   name: trigger-template-php-hello-3h8bta
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
   resourceVersion: '1229863'
   uid: e21b7197-197a-4d12-95c2-b6c977432ef8
 spec:
@@ -35,7 +35,7 @@ spec:
         labels:
           app.kubernetes.io/instance: pipelines
           tekton.dev/pipeline: php-hello
-        namespace: tekton-tutorial
+        namespace: nodejs-web-app-pipelines
       spec:
         params:
           - name: git-url

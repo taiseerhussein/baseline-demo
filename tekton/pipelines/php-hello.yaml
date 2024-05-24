@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   name: php-hello
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
   labels:
     app.kubernetes.io/instance: pipeline
 spec:

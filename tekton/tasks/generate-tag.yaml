@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: generate-tag
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
   annotations:
     argocd.argoproj.io/sync-wave: "1"
     description: |

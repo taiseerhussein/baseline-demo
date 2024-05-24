@@ -7,7 +7,7 @@ metadata:
     tekton.dev/platforms: linux/amd64
     tekton.dev/tags: security
   name: acs-image-check
-  namespace: tekton-tutorial
+  namespace: nodejs-web-app-pipelines
 spec:
   description: >-
     Policy check an image with StackRox/RHACS
