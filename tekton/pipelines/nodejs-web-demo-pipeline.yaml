@@ -75,7 +75,7 @@ spec:
     - name: build-image
       params:
         - name: IMAGE
-          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+          value: '$(params.IMAGEREPO):demo'
         - name: FORMAT
           value: docker
         - name: SKIP_PUSH
@@ -95,7 +95,7 @@ spec:
         - name: rox_api_token
           value: roxsecrets
         - name: image
-          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+          value: '$(params.IMAGEREPO):demo'
         - name: output_format
           value: json
         - name: insecure-skip-tls-verify
@@ -112,7 +112,7 @@ spec:
         - name: rox_api_token
           value: roxsecrets
         - name: image
-          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+          value: '$(params.IMAGEREPO):demo'
         - name: insecure-skip-tls-verify
           value: 'true'
       runAfter:
@@ -124,7 +124,7 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            docker://'$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
+            docker://'$(params.IMAGEREPO):demo'
         - name: destImageURL
           value: 'docker://quay.io/tkhussein/nodejs-web-demo:$(asks.git-clone.results.commit)'
         - name: srcTLSverify
