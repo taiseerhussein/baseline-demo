@@ -17,7 +17,7 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: image-registry.openshift-image-registry.svc:5000/dev-baseline-demo/web-nodejs-sample
+    - default: quay.io/tkhussein/nodejs-web-scan
       description: image to be build from the code
       name: IMAGEREPO
       type: string
