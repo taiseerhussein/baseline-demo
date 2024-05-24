@@ -75,7 +75,7 @@ spec:
     - name: build-image
       params:
         - name: IMAGE
-          value: '$(params.IMAGEREPO):demo'
+          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: BUILDER_IMAGE
           value: 'registry.redhat.io/rhel8/buildah@sha256:55f5c7d88c77e1ab5a2ab8e877172b2b66cb196e21f10dc45148470d0ee8bbae'
         - name: FORMAT
@@ -103,7 +103,7 @@ spec:
         - name: rox_api_token
           value: roxsecrets
         - name: image
-          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/web-nodejs-sample:demo'
+          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/web-nodejs-sample:$(tasks.git-clone.results.commit)'
         - name: output_format
           value: json
         - name: insecure-skip-tls-verify
@@ -120,7 +120,7 @@ spec:
         - name: rox_api_token
           value: roxsecrets
         - name: image
-          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/web-nodejs-sample:demo'
+          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/web-nodejs-sample:$(tasks.git-clone.results.commit)'
         - name: insecure-skip-tls-verify
           value: 'true'
       runAfter:
@@ -132,9 +132,9 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            docker://$(params.IMAGEREPO):demo
+            'docker://$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
         - name: destImageURL
-          value: 'docker://quay.io/tkhussein/nodejs-web-demo:demo'
+          value: 'docker://quay.io/tkhussein/nodejs-web-demo:$(tasks.git-clone.results.commit)'
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
