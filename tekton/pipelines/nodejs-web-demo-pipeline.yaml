@@ -132,7 +132,7 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            'docker://$(params.IMAGEREPO):demo'
+            docker://$(params.IMAGEREPO):demo
         - name: destImageURL
           value: 'docker://quay.io/tkhussein/nodejs-web-demo:$(tasks.git-clone.results.commit)'
         - name: srcTLSverify
