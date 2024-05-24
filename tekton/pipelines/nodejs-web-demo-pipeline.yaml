@@ -129,6 +129,8 @@ spec:
           value: 'false'
         - name: destTLSverify
           value: 'false'
+        - name: SKIP_PUSH
+          value: 'false'
       runAfter:
         - acs-image-check
       taskRef:
