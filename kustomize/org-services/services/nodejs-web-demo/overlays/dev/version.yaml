@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-      - image: quay.io/tkhussein/nodejs-web-demo:68325c2df9942f718c8b5a5a9fb6ba732aaf6f90
+      - image: quay.io/tkhussein/nodejs-web-demo:TAGG
         name: nodejs-web-demo
