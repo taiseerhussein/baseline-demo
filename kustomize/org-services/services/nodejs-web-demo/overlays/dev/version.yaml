@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-      - image: quay.io/tkhussein/nodejs-web-demo:b873b57b5dce18101781d78031c1a3fea142e666
+      - image: quay.io/tkhussein/nodejs-web-demo:73401573ab6b8134f9c6c4adad70e78f4abf8e97
         name: nodejs-web-demo
