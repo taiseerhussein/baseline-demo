@@ -9,42 +9,42 @@ patches:
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: babboon
+      value: php-hello
     - op: replace
       path: /metadata/name
-      value: babboon
+      value: php-hello
     - op: replace
       path: /spec/selector/matchLabels/app
-      value: babboon
+      value: php-hello
     - op: replace
       path: /spec/template/metadata/labels/app
-      value: babboon
+      value: php-hello
     - op: replace
       path: /spec/template/spec/containers/0/name
-      value: babboon
+      value: php-hello
   target:
     kind: Deployment
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: babboon
+      value: php-hello
     - op: replace
       path: /metadata/name
-      value: babboon
+      value: php-hello
     - op: replace
       path: /spec/to/name
-      value: babboon
+      value: php-hello
   target:
     kind: Route
 - patch: |- 
     - op: replace
       path: /metadata/labels/app
-      value: babboon
+      value: php-hello
     - op: replace
       path: /metadata/name
-      value: babboon
+      value: php-hello
     - op: replace
       path: /spec/selector/app
-      value: babboon
+      value: php-hello
   target:
     kind: Service

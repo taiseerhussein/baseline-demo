@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - nodejs-web-demo-pipeline.yaml
-# - dotnet-pipeline.yaml
+- php-hello.yaml

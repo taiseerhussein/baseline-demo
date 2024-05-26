@@ -3,4 +3,4 @@ data:
   ENVIRONMENT: 'PROD'
 kind: ConfigMap
 metadata:
-  name: babboon
+  name: php-hello

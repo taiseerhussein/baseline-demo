@@ -3,4 +3,4 @@ data:
   ENVIRONMENT: 'TEST'
 kind: ConfigMap
 metadata:
-  name: babboon
+  name: php-hello

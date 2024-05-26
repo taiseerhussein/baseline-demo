@@ -3,6 +3,6 @@ kind: Kustomization
 
 resources:
 # - common-appset.yaml
-- babboon-appset.yaml
+- php-hello-appset.yaml
 # - service1-appset.yaml
 

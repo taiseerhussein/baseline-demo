@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: babboon
+  name: php-hello
   namespace: openshift-gitops
 spec:
   generators:
@@ -10,12 +10,12 @@ spec:
       # Patch the generators
   template:
     metadata:
-      name: '{{cluster}}-{{namespace}}-babboon'
+      name: '{{cluster}}-{{namespace}}-php-hello'
     spec:
       source:
         repoURL: https://github.com/taiseerhussein/baseline-demo
         targetRevision: main
-        path: kustomize/org-services/services/babboon/overlays/{{cluster}}
+        path: kustomize/org-services/services/php-hello/overlays/{{cluster}}
       project: default
       destination:
         server: '{{url}}'
