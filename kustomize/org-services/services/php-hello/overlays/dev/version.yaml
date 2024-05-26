@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-      - image: quay.io/tkhussein/php-hello:c8366915f680c08e3ca9906c9aa289052ef3af7d
+      - image: quay.io/tkhussein/php-hello:36fcafa1a09d490c4e35c56dc081e0df11b1f44f
         name: php-hello
