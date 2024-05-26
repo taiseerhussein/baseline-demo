@@ -13,7 +13,7 @@ patches:
         elements: 
         - cluster: dev
           url: https://kubernetes.default.svc
-          namespace: dev-namespace2
+          namespace: dev-php-hello
   target:
     kind: ApplicationSet
 

@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
 - nodejs-web-demo-trigger-template.yaml
 - nodejs-web-demo-el.yaml
-# - php-hello-trigger-template.yaml
-# - php-hello-trigger.yaml
+- php-hello-trigger-template.yaml
+- php-hello-trigger.yaml
 - el-nodejs-web-demo-route.yaml
-# - el-php-hello-route.yaml
+- el-php-hello-route.yaml

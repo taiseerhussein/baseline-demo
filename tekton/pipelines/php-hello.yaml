@@ -1,12 +1,12 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
-  name: php-hello
-  namespace: nodejs-web-app-pipelines
+    argocd.argoproj.io/sync-wave: '2'
   labels:
     app.kubernetes.io/instance: pipeline
+  name: php-hello-pipeline
+  namespace: nodejs-web-app-pipelines
 spec:
   params:
     - default: 'https://github.com/taiseerhussein/php-hello-dockerfile.git'
@@ -17,11 +17,11 @@ spec:
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
-    - default: quay.io/tkhussein/php-hello
+    - default: image-registry.openshift-image-registry.svc:5000/nodejs-web-app-pipelines/php-hello-sample
       description: image to be build from the code
       name: IMAGEREPO
       type: string
-    - default: 'https://github.com/taiseerhussein/baseline-demo.git'
+    - default: 'https://github.com/taiseerhussein/php-hello-dockerfile.git'
       description: The kustomize git repository url
       name: KUSTOMIZE_GIT_URL
       type: string
@@ -46,20 +46,6 @@ spec:
       name: KUSTOMIZE_GIT_FILE_NAME
       type: string
   tasks:
-    - name: build-image
-      params:
-        - name: IMAGE
-          value: '$(params.IMAGEREPO):$(tasks.git-clone.results.commit)'
-        - name: FORMAT
-          value: docker
-      runAfter:
-        - git-clone
-      taskRef:
-        kind: ClusterTask
-        name: buildah
-      workspaces:
-        - name: source
-          workspace: shared-workspace
     - name: git-clone
       params:
         - name: url
@@ -77,8 +63,7 @@ spec:
         - name: verbose
           value: 'true'
         - name: gitInitImage
-          value: >-
-            gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0
+          value: 'gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0'
         - name: userHome
           value: /tekton/home
       taskRef:
@@ -86,6 +71,81 @@ spec:
         name: git-clone
       workspaces:
         - name: output
+          workspace: shared-workspace
+    - name: build-image
+      params:
+        - name: IMAGE
+          value: '$(params.IMAGEREPO):demo'
+        - name: BUILDER_IMAGE
+          value: 'registry.redhat.io/rhel8/buildah@sha256:55f5c7d88c77e1ab5a2ab8e877172b2b66cb196e21f10dc45148470d0ee8bbae'
+        - name: FORMAT
+          value: docker
+        - name: SKIP_PUSH
+          value: 'false'
+        - name: TLSVERIFY
+          value: 'false'
+        - name: BUILD_EXTRA_ARGS
+          value: ''
+        - name: PUSH_EXTRA_ARGS
+          value: ''
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    - name: acs-image-scan
+      params:
+        - name: rox_central_endpoint
+          value: roxsecrets
+        - name: rox_api_token
+          value: roxsecrets
+        - name: image
+          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/php-hello-sample:demo'
+        - name: output_format
+          value: json
+        - name: insecure-skip-tls-verify
+          value: 'true'
+      runAfter:
+        - build-image
+      taskRef:
+        kind: Task
+        name: acs-image-scan
+    - name: acs-image-check
+      params:
+        - name: rox_central_endpoint
+          value: roxsecrets
+        - name: rox_api_token
+          value: roxsecrets
+        - name: image
+          value: 'default-route-openshift-image-registry.apps.baseline.sandbox1654.opentlc.com/nodejs-web-app-pipelines/php-hello-sample:demo'
+        - name: insecure-skip-tls-verify
+          value: 'true'
+      runAfter:
+        - acs-image-scan
+      taskRef:
+        kind: Task
+        name: acs-image-check
+    - name: push-image
+      params:
+        - name: srcImageURL
+          value: >-
+            docker://$(params.IMAGEREPO):demo
+        - name: destImageURL
+          value: 'docker://quay.io/tkhussein/php-hello:$(tasks.git-clone.results.commit)'
+        - name: srcTLSverify
+          value: 'false'
+        - name: destTLSverify
+          value: 'false'
+      runAfter:
+        - acs-image-check
+      taskRef:
+        kind: ClusterTask
+        name: skopeo-copy
+      workspaces:
+        - name: images-url
           workspace: shared-workspace
     - name: update-kustomize-repo
       params:
@@ -104,7 +164,7 @@ spec:
         - name: verbose
           value: 'true'
       runAfter:
-        - build-image
+        - push-image
       taskRef:
         kind: Task
         name: update-kustomize-repo
