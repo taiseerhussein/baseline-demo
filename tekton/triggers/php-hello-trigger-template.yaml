@@ -14,15 +14,16 @@ spec:
     - name: content-type
     - name: pusher-name
   resourcetemplates:
-    - apiVersion: tekton.dev/v1beta1
+    - apiVersion: tekton.dev/v1
       kind: PipelineRun
       metadata:
         annotations:
-          pipeline.openshift.io/started-by: cluster-admin
-        generateName: php-hello-
+          argocd.argoproj.io/sync-wave: '2'
+          pipeline.openshift.io/started-by: 'kube:admin'
+        generateName: php-hello-pipeline-
         labels:
-          app.kubernetes.io/instance: pipelines
-          tekton.dev/pipeline: php-hello
+          app.kubernetes.io/instance: dev-pipeline-creation
+          tekton.dev/pipeline: php-hello-pipeline
         namespace: nodejs-web-app-pipelines
       spec:
         params:
@@ -31,9 +32,9 @@ spec:
           - name: git-revision
             value: main
           - name: IMAGEREPO
-            value: quay.io/tkhussein/php-hello
+            value: 'image-registry.openshift-image-registry.svc:5000/nodejs-web-app-pipelines/php-hello-sample'
           - name: KUSTOMIZE_GIT_URL
-            value: 'https://github.com/taiseerhussein/baseline-demo.git'
+            value: 'https://github.com/taiseerhussein/php-hello-dockerfile.git'
           - name: KUSTOMIZE_ENV
             value: dev
           - name: IMAGETAG
@@ -49,12 +50,4 @@ spec:
         status: null
         workspaces:
           - name: shared-workspace
-            volumeClaimTemplate:
-              spec:
-                accessModes:
-                  - ReadWriteOnce
-                resources:
-                  requests:
-                    storage: 1Gi
-                storageClassName: gp3
-                volumeMode: Filesystem
+
