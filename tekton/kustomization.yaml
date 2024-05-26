@@ -3,6 +3,6 @@ kind: Kustomization
 
 resources:
 # - namespace.yaml
-- pipelines/
+- nodejs-web-demo/
 - tasks/
-- triggers
+# - php-hello/
