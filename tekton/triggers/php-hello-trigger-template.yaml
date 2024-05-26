@@ -50,4 +50,13 @@ spec:
         status: null
         workspaces:
           - name: shared-workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+                storageClassName: gp3-csi
+                volumeMode: Filesystem
 
